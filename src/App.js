@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Search from './components/Search'
+import Results from './components/Results'
+import Popup from './components/Popup'
+import Error from './components/Error'
+import {useGlobalContext} from './context/Context'
 
 function App() {
+  const {state:{results},state:{selected},closePopup} = useGlobalContext()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div className="App">
+     <header>
+       <h1>Movie Database</h1>
+     </header>
+     <main>
+       <Search />
+       {(typeof results == 'undefined')?<Error />:<Results />}
+       {(typeof selected.Title != 'undefined')&&<Popup selected={selected} closePopup={closePopup} />}
+     </main>
+   </div>
   );
 }
 
