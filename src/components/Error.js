@@ -14,7 +14,7 @@ const Error = () => {
             setAlert(false)
           },3000)
           return ()=> clearTimeout(timeout,myAlert())
-      }, [search])    
+      }, [])    
     return (
         <div className="error">
             {alert&&<h1>Please Enter Value!</h1>}
